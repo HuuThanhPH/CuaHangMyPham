@@ -86,9 +86,9 @@
                                     </ul>
                                 </div>
                                 <div class="product-quick-action">
-                                    @if (User.Identity.IsAuthenticated)
+                                    @if (HttpContext.Current.Session["UserName"] != null)
                                     {
-                                        <a class="btn-product-add" href="@Url.Action("AddToCart", new { id = Model.ProductId })">Add to cart</a>
+                                        <a class="btn-product-add" href="@Url.Action("AddToCart","Cart", new { id = Model.ProductId })">Add to cart</a>
                                     }
                                     else
                                     {
@@ -96,7 +96,7 @@
                                     }
                                 </div>
                                 <div class="product-wishlist-compare">
-                                    @if (User.Identity.IsAuthenticated)
+                                    @if (HttpContext.Current.Session["UserName"] != null)
                                     {
                                         <a href="@Url.Action("Wishlist", new { id = Model.ProductId })" class="btn-wishlist"><i class="icon-heart"></i>Add to wishlist</a>
                                         <a href="@Url.Action("Compare", new { id = Model.ProductId })" class="btn-compare"><i class="icon-shuffle"></i>Add to compare</a>

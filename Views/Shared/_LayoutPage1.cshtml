@@ -218,10 +218,16 @@
                                                 <i class="icon-user icon"></i>
                                             </a>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                @if (User.Identity.IsAuthenticated)
+                                                @if (HttpContext.Current.Session["UserName"] != null)
                                                 {
-                                                    <!-- Logout Option -->
-                                                    <li><a class="dropdown-item" href="@Url.Action("Logout", "Home")">Logout</a></li>
+                                                    // Get the username from the session
+                                                    var userName = HttpContext.Current.Session["UserName"].ToString();
+
+                                                    <!-- User Info and Logout Option -->
+                                                    <li>
+                                                        <a class="dropdown-item">Welcome, @userName!</a> <!-- Display the username -->
+                                                        <a class="dropdown-item" href="@Url.Action("Logout", "Home")">Logout</a>
+                                                    </li>
                                                 }
                                                 else
                                                 {

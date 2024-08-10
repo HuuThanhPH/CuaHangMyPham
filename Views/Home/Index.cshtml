@@ -91,7 +91,7 @@
 
                                                     </div>
                                                     <div class="product-footer">
-                                                        @if (User.Identity.IsAuthenticated)
+                                                        @if (HttpContext.Current.Session["UserName"]!=null)
                                                         {
                                                             <a class="btn-product-add" href="@Url.Action("AddToCart", new { id = product.ProductId })">Add to cart</a>
                                                         }

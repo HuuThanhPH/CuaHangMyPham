@@ -143,25 +143,29 @@ namespace MongoWeb.Controllers
             return View(model);
         }
 
-
         public ActionResult Logout(LoginViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                bool isAuthenticated = login.Authenticate(model.Email, model.Password);
-                if (isAuthenticated)
-                {
-                    // Lưu thông tin người dùng vào Session hoặc Cookie nếu cần
-                    // Ví dụ: Session["User"] = user;
+            //if (ModelState.IsValid)
+            //{
+            //    bool isAuthenticated = login.Authenticate(model.Email, model.Password);
+            //    if (isAuthenticated)
+            //    {
+            //        // Lưu thông tin người dùng vào Session hoặc Cookie nếu cần
+            //        // Ví dụ: Session["User"] = user;
+            //        // Clear the session and log the user out
+            //        HttpContext.Session.Clear(); 
+            //        // Redirect to the homepage or login page after logging out
+            //        return RedirectToAction("Index", "Home");
+            //    }
+            //    else
+            //    {
+            //        ModelState.AddModelError("", "Invalid login attempt.");
+            //    }
+            //}
+            //return View(model);
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
 
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                }
-            }
-            return View(model);
         }
 
 
